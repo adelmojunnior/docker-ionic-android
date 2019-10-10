@@ -28,3 +28,4 @@ RUN rbenv install 2.5.1 && rbenv global 2.5.1 && rbenv rehash
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
 RUN bash -l -c 'rbenv global 2.5.1 && gem install fastlane && gem install bundler'
 
+ENTRYPOINT [ "bash", "-l", "-c" ]

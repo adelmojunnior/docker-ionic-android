@@ -16,16 +16,14 @@ RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv && cd /root/.rbenv
 RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
     /root/.rbenv/plugins/ruby-build/install.sh
 
+RUN cp /etc/profile /root/.profile
 ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-    echo 'eval "$(rbenv init -)"' >> .profile && \
     echo 'eval "$(rbenv init -)"' >> .bashrc 
 
 RUN eval "$(rbenv init -)"    
 
 RUN rbenv install 2.5.1 && rbenv global 2.5.1 && rbenv rehash 
 
-RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
+# RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
 RUN bash -l -c 'rbenv global 2.5.1 && gem install fastlane && gem install bundler'
-
-ENTRYPOINT [ "bash", "-l", "-c" ]

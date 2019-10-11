@@ -3,7 +3,7 @@ FROM beevelop/android-nodejs
 ENV IONIC_VERSION 4.5.0
 ENV CORDOVA_VERSION 8.1.2
 
-RUN apt-get update && apt-get install -y curl git bzip2 openssh-client build-essential libssl-dev libreadline-dev && \
+RUN apt-get update && apt-get install -y curl git bzip2 openssh-client build-essential libssl-dev libreadline-dev libcurl4-gnutls-dev && \
     npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
     npm i -g --unsafe-perm ionic@${IONIC_VERSION} && \
     ionic --no-interactive config set -g daemon.updates false && \

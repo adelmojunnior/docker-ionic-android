@@ -19,7 +19,9 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins
 RUN cp /etc/profile /root/.profile
 ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-    echo 'eval "$(rbenv init -)"' >> .bashrc 
+    echo 'eval "$(rbenv init -)"' >> .bashrc && \
+    echo 'export LC_ALL=en_US.UTF-8' >> .bashrc && \
+    echo 'export LANG=en_US.UTF-8' >> .bashrc 
 
 RUN eval "$(rbenv init -)"    
 

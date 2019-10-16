@@ -65,5 +65,6 @@ RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment && \
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-RUN . /root/.bashrc
-RUN rbenv global ${RUBY_VERSION} && gem install fastlane && gem install bundler
+RUN . /root/.profile
+
+RUN rbenv global ${RUBY_VERSION} && /bin/bash -l -c "gem install bundler fastlane"

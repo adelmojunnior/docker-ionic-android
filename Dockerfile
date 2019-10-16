@@ -15,7 +15,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y wget unzip curl git bzip2 openssh-client build-essential libssl-dev libreadline-dev libcurl4-gnutls-dev \
-        librsvg2-2 imagemagick graphicsmagick tzdata ca-certificates zlib1g-dev --no-install-recommends && \
+    librsvg2-2 imagemagick graphicsmagick tzdata ca-certificates zlib1g-dev --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && apt-get clean
 
 RUN mkdir -p ${ANDROID_HOME} && \
@@ -38,7 +38,7 @@ RUN cp /etc/profile /root/.profile
 ENV NVM_DIR /root/.nvm
 ENV PATH $NVM_DIR/versions/node/v$NODEJS_VERSION/bin:$PATH
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && . /root/.bashrc && . $NVM_DIR/nvm.sh && nvm install ${NODEJS_VERSION} 
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && . /root/.profile && . $NVM_DIR/nvm.sh && nvm install ${NODEJS_VERSION} 
 
 RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
     npm i -g --unsafe-perm ionic@${IONIC_VERSION} && \
@@ -65,5 +65,5 @@ RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment && \
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-RUN . /root/.bashrc
-RUN rbenv global ${RUBY_VERSION} && gem install fastlane && gem install bundler
+RUN . /root/.profile
+RUN rbenv global ${RUBY_VERSION} && /bin/bash -l -c "gem install bundler fastlane"

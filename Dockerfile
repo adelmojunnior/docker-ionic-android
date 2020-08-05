@@ -6,7 +6,8 @@ ENV IONIC_VERSION 4.5.0
 ENV CORDOVA_VERSION 9.0.0
 ENV RUBY_VERSION 2.6.5
 ENV ANDROID_SDK_ROOT /opt/android-sdk-linux
-ENV NODEJS_VERSION 10.16.3 
+ENV NODEJS_VERSION 14.5.0
+ENV NPM_VERSION 6.14.5
 ENV TZ America/Bahia
 ENV PATH /root/.rbenv/bin:$PATH
 ENV GIT_SSL_NO_VERIFY true
@@ -40,7 +41,8 @@ ENV PATH $NVM_DIR/versions/node/v$NODEJS_VERSION/bin:$PATH
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && . /root/.profile && . $NVM_DIR/nvm.sh && nvm install ${NODEJS_VERSION} 
 
-RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
+RUN npm i -g npm@${NPM_VERSION} && \
+    npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
     npm i -g --unsafe-perm ionic@${IONIC_VERSION} && \
     ionic --no-interactive config set -g daemon.updates false
 

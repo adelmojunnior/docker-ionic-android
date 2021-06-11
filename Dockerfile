@@ -86,3 +86,4 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key ad
 # RUN apt-get update
 RUN apt-get install -y postgresql postgresql-contrib
 # which pg_config
+RUN apt-get install libpq-dev
